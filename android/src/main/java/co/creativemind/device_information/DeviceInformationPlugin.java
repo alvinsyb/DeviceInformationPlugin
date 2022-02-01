@@ -115,24 +115,30 @@ public class DeviceInformationPlugin implements FlutterPlugin, MethodCallHandler
   @Nullable
   public String getDeviceUniqueID() {
     UUID wideVineUuid = new UUID(-0x121074568629b532L, -0x5c37d8232ae2de13L);
+    UUID clearKeyUuid = new UUID(-0x1d8e62a7567a4c37L, 0x781AB030AF78D30EL);
     try {
       MediaDrm wvDrm = new MediaDrm(wideVineUuid);
       byte[] wideVineId = wvDrm.getPropertyByteArray(MediaDrm.PROPERTY_DEVICE_UNIQUE_ID);
       String stringWithSymbols = Arrays.toString(wideVineId);
-      android.util.Log.d("DeviceInformationPackage", "stringWithSymbols: "+stringWithSymbols);
       String strWithoutBrackets = stringWithSymbols.replaceAll("\\[","");
-      android.util.Log.d("DeviceInformationPackage", "strWithoutBrackets: "+strWithoutBrackets);
       String strWithoutBrackets1 = strWithoutBrackets.replaceAll("]","");
-      android.util.Log.d("DeviceInformationPackage", "strWithoutBrackets1: "+strWithoutBrackets1);
       String strWithoutComma = strWithoutBrackets1.replaceAll(",","");
-      android.util.Log.d("DeviceInformationPackage", "strWithoutComma: "+strWithoutComma);
       String strWithoutHyphen = strWithoutComma.replaceAll("-","");
-      android.util.Log.d("DeviceInformationPackage", "strWithoutHyphen: "+strWithoutHyphen);
       String strWithoutSpace = strWithoutHyphen.replaceAll(" ","");
-      android.util.Log.d("DeviceInformationPackage", "strWithoutSpace: "+strWithoutSpace);
-      return strWithoutSpace.substring(0,15);
+
+      MediaDrm ckDrm = new MediaDrm(clearKeyUuid);
+      byte[] clearKeyId = ckDrm.getPropertyByteArray(MediaDrm.PROPERTY_DEVICE_UNIQUE_ID);
+      String ckStringWithSymbols = Arrays.toString(clearKeyId);
+      String ckStrWithoutBrackets = ckStringWithSymbols.replaceAll("\\[","");
+      String ckStrWithoutBrackets1 = ckStrWithoutBrackets.replaceAll("]","");
+      String ckStrWithoutComma = ckStrWithoutBrackets1.replaceAll(",","");
+      String ckStrWithoutHyphen = ckStrWithoutComma.replaceAll("-","");
+      String ckStrWithoutSpace = ckStrWithoutHyphen.replaceAll(" ","");
+
+      return strWithoutSpace+";"+ckStrWithoutSpace;
+      //return strWithoutSpace.substring(0,15);
     } catch (Exception e) {
-      return "";
+      return "getDRMUuidFailed";
     }
   }
 
