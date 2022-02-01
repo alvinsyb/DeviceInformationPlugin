@@ -138,7 +138,7 @@ public class DeviceInformationPlugin implements FlutterPlugin, MethodCallHandler
       return strWithoutSpace+";"+ckStrWithoutSpace;
       //return strWithoutSpace.substring(0,15);
     } catch (Exception e) {
-      return "getDRMUuidFailed";
+      return e.toString();
     }
   }
 
