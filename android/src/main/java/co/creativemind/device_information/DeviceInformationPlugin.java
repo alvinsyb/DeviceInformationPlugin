@@ -119,12 +119,17 @@ public class DeviceInformationPlugin implements FlutterPlugin, MethodCallHandler
       MediaDrm wvDrm = new MediaDrm(wideVineUuid);
       byte[] wideVineId = wvDrm.getPropertyByteArray(MediaDrm.PROPERTY_DEVICE_UNIQUE_ID);
       String stringWithSymbols = Arrays.toString(wideVineId);
-      android.util.Log.d("DeviceInformationPackage", "wideVineId: "+stringWithSymbols);
+      android.util.Log.d("DeviceInformationPackage", "stringWithSymbols: "+stringWithSymbols);
       String strWithoutBrackets = stringWithSymbols.replaceAll("\\[","");
+      android.util.Log.d("DeviceInformationPackage", "strWithoutBrackets: "+strWithoutBrackets);
       String strWithoutBrackets1 = strWithoutBrackets.replaceAll("]","");
+      android.util.Log.d("DeviceInformationPackage", "strWithoutBrackets1: "+strWithoutBrackets1);
       String strWithoutComma = strWithoutBrackets1.replaceAll(",","");
+      android.util.Log.d("DeviceInformationPackage", "strWithoutComma: "+strWithoutComma);
       String strWithoutHyphen = strWithoutComma.replaceAll("-","");
+      android.util.Log.d("DeviceInformationPackage", "strWithoutHyphen: "+strWithoutHyphen);
       String strWithoutSpace = strWithoutHyphen.replaceAll(" ","");
+      android.util.Log.d("DeviceInformationPackage", "strWithoutSpace: "+strWithoutSpace);
       return strWithoutSpace.substring(0,15);
     } catch (Exception e) {
       return "";
