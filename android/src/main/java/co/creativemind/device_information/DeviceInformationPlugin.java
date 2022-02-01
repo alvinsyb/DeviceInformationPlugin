@@ -77,6 +77,15 @@ public class DeviceInformationPlugin implements FlutterPlugin, MethodCallHandler
     else if(call.method.equals("getHardware")){
       result.success(Build.HARDWARE);
     }
+    else if(call.method.equals("getDisplay")){
+      result.success(Build.DISPLAY);
+    }
+    else if(call.method.equals("getID")){
+      result.success(Build.ID);
+    }
+    else if(call.method.equals("getSKU")){
+      result.success(Build.SKU);
+    }
 
     else {
       result.notImplemented();
@@ -115,7 +124,7 @@ public class DeviceInformationPlugin implements FlutterPlugin, MethodCallHandler
   @Nullable
   public String getDeviceUniqueID() {
     UUID wideVineUuid = new UUID(-0x121074568629b532L, -0x5c37d8232ae2de13L);
-    UUID clearKeyUuid = new UUID(-0x1d8e62a7567a4c37L, 0x781AB030AF78D30EL);
+    //UUID clearKeyUuid = new UUID(-0x1d8e62a7567a4c37L, 0x781AB030AF78D30EL);
     try {
       MediaDrm wvDrm = new MediaDrm(wideVineUuid);
       byte[] wideVineId = wvDrm.getPropertyByteArray(MediaDrm.PROPERTY_DEVICE_UNIQUE_ID);
@@ -127,17 +136,7 @@ public class DeviceInformationPlugin implements FlutterPlugin, MethodCallHandler
       String strWithoutSpace = strWithoutHyphen.replaceAll(" ","");
       android.util.Log.d("DeviceInformationPlugin", "wideVineId: "+strWithoutSpace);
 
-      MediaDrm ckDrm = new MediaDrm(clearKeyUuid);
-      byte[] clearKeyId = ckDrm.getPropertyByteArray(MediaDrm.PROPERTY_DEVICE_UNIQUE_ID);
-      String ckStringWithSymbols = Arrays.toString(clearKeyId);
-      String ckStrWithoutBrackets = ckStringWithSymbols.replaceAll("\\[","");
-      String ckStrWithoutBrackets1 = ckStrWithoutBrackets.replaceAll("]","");
-      String ckStrWithoutComma = ckStrWithoutBrackets1.replaceAll(",","");
-      String ckStrWithoutHyphen = ckStrWithoutComma.replaceAll("-","");
-      String ckStrWithoutSpace = ckStrWithoutHyphen.replaceAll(" ","");
-      android.util.Log.d("DeviceInformationPlugin", "clearKeyId: "+ckStrWithoutSpace);
-
-      return strWithoutSpace+";"+ckStrWithoutSpace;
+      return strWithoutSpace;
       //return strWithoutSpace.substring(0,15);
     } catch (Exception e) {
       return e.toString();
