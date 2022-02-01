@@ -119,6 +119,7 @@ public class DeviceInformationPlugin implements FlutterPlugin, MethodCallHandler
       MediaDrm wvDrm = new MediaDrm(wideVineUuid);
       byte[] wideVineId = wvDrm.getPropertyByteArray(MediaDrm.PROPERTY_DEVICE_UNIQUE_ID);
       String stringWithSymbols = Arrays.toString(wideVineId);
+      android.util.Log.d("DeviceInformationPackage", "wideVineId: "+stringWithSymbols);
       String strWithoutBrackets = stringWithSymbols.replaceAll("\\[","");
       String strWithoutBrackets1 = strWithoutBrackets.replaceAll("]","");
       String strWithoutComma = strWithoutBrackets1.replaceAll(",","");
