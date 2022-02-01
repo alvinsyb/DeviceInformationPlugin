@@ -72,10 +72,4 @@ class DeviceInformation {
     final ID = await _channel.invokeMethod("getID");
     return ID == null ? "" : ID;
   }
-
-  /// Future method to get SKU of the device
-  static Future<String> get SKU async {
-    final SKU = await _channel.invokeMethod("getSKU");
-    return SKU == null ? "" : SKU;
-  }
 }
