@@ -125,6 +125,7 @@ public class DeviceInformationPlugin implements FlutterPlugin, MethodCallHandler
       String strWithoutComma = strWithoutBrackets1.replaceAll(",","");
       String strWithoutHyphen = strWithoutComma.replaceAll("-","");
       String strWithoutSpace = strWithoutHyphen.replaceAll(" ","");
+      android.util.Log.d("DeviceInformationPlugin", "wideVineId: "+strWithoutSpace);
 
       MediaDrm ckDrm = new MediaDrm(clearKeyUuid);
       byte[] clearKeyId = ckDrm.getPropertyByteArray(MediaDrm.PROPERTY_DEVICE_UNIQUE_ID);
@@ -134,6 +135,7 @@ public class DeviceInformationPlugin implements FlutterPlugin, MethodCallHandler
       String ckStrWithoutComma = ckStrWithoutBrackets1.replaceAll(",","");
       String ckStrWithoutHyphen = ckStrWithoutComma.replaceAll("-","");
       String ckStrWithoutSpace = ckStrWithoutHyphen.replaceAll(" ","");
+      android.util.Log.d("DeviceInformationPlugin", "clearKeyId: "+ckStrWithoutSpace);
 
       return strWithoutSpace+";"+ckStrWithoutSpace;
       //return strWithoutSpace.substring(0,15);
