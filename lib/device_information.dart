@@ -60,4 +60,22 @@ class DeviceInformation {
     final hardware = await _channel.invokeMethod("getHardware");
     return hardware == null ? "" : hardware;
   }
+
+  /// Future method to get displayed ID of the device
+  static Future<String> get display async {
+    final display = await _channel.invokeMethod("getDisplay");
+    return display == null ? "" : display;
+  }
+
+  /// Future method to get ID of the device
+  static Future<String> get ID async {
+    final ID = await _channel.invokeMethod("getID");
+    return ID == null ? "" : ID;
+  }
+
+  /// Future method to get SKU of the device
+  static Future<String> get SKU async {
+    final SKU = await _channel.invokeMethod("getSKU");
+    return SKU == null ? "" : SKU;
+  }
 }
