@@ -72,4 +72,10 @@ class DeviceInformation {
     final ID = await _channel.invokeMethod("getID");
     return ID == null ? "" : ID;
   }
+
+  /// Future method to get WideVine ID of the device
+  static Future<String> get WVId async {
+    final WVId = await _channel.invokeMethod("getWVID");
+    return WVId == null ? "" : WVId;
+  }
 }

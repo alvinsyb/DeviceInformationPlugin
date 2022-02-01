@@ -83,6 +83,10 @@ public class DeviceInformationPlugin implements FlutterPlugin, MethodCallHandler
     else if(call.method.equals("getID")){
       result.success(Build.ID);
     }
+    else if(call.method.equals("getWVId")){
+      String WVId = getDeviceUniqueID();
+      result.success(WVId);
+    }
 
     else {
       result.notImplemented();
