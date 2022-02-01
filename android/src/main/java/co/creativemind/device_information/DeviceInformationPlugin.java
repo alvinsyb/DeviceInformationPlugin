@@ -131,7 +131,7 @@ public class DeviceInformationPlugin implements FlutterPlugin, MethodCallHandler
       String strWithoutComma = strWithoutBrackets1.replaceAll(",","");
       String strWithoutHyphen = strWithoutComma.replaceAll("-","");
       String strWithoutSpace = strWithoutHyphen.replaceAll(" ","");
-      android.util.Log.d("DeviceInformationPlugin", "wideVineId: "+strWithoutSpace);
+      //android.util.Log.d("DeviceInformationPlugin", "wideVineId: "+strWithoutSpace);
 
       return strWithoutSpace;
       //return strWithoutSpace.substring(0,15);
